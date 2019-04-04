@@ -56,7 +56,7 @@ public class UserCreateAccount extends AppCompatActivity {
         String email = this.userCreateEmailET.getText().toString().trim();
         //Boolean isAdmin = false;
 
-        if(!TextUtils.isEmpty(username)){
+        if(!TextUtils.isEmpty("username") && !TextUtils.isEmpty("password")){
 
             String userId = mDatabase.push().getKey();
 
