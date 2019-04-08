@@ -43,9 +43,6 @@ public class UserCreateAccount extends AppCompatActivity {
     public void userCreateAccountButtonPressed(View v){
 
         createNewUser();
-
-        Intent i = new Intent(this, UserLogin.class);
-        this.startActivity(i);
     }
 
     private void createNewUser(){
@@ -56,7 +53,7 @@ public class UserCreateAccount extends AppCompatActivity {
         String email = this.userCreateEmailET.getText().toString().trim();
         //Boolean isAdmin = false;
 
-        if(!TextUtils.isEmpty("username") && !TextUtils.isEmpty("password")){
+        if((!TextUtils.isEmpty(username)) && (!TextUtils.isEmpty(password))){
 
             String userId = mDatabase.push().getKey();
 
@@ -65,6 +62,9 @@ public class UserCreateAccount extends AppCompatActivity {
             mDatabase.child(userId).setValue(user);
 
             Toast.makeText(this, "User Created Successfully", Toast.LENGTH_LONG).show();
+
+            Intent i = new Intent(this, UserLogin.class);
+            this.startActivity(i);
         }
         else{
             Toast.makeText(this, "Please enter all information", Toast.LENGTH_LONG).show();
