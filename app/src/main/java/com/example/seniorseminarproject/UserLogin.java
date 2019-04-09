@@ -60,7 +60,7 @@ public class UserLogin extends AppCompatActivity {
         userLogin();
     }
 
-    public void userForgotPasswordTextPressed(View v){
+    private void userForgotPasswordTextPressed(View v){
         Intent i = new Intent(this, UserForgotPassword.class);
         this.startActivity(i);
     }
@@ -70,7 +70,7 @@ public class UserLogin extends AppCompatActivity {
         this.startActivity(i);
     }
 
-    private void userLogin(){
+    public void userLogin(){
         String email = userEmailET.getText().toString().trim();
         String password = userPasswordET.getText().toString().trim();
 
