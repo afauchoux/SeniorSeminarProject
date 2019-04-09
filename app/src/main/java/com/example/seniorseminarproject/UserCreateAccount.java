@@ -84,6 +84,7 @@ public class UserCreateAccount extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
+                    finish();
                     Toast.makeText(getApplicationContext(), "User created successfully", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getApplicationContext(), UserLogin.class);
                     getApplicationContext().startActivity(i);

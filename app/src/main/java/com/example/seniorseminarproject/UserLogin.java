@@ -117,4 +117,15 @@ public class UserLogin extends AppCompatActivity {
         });
     }
 
+//    @Override
+//    protected void onStart(){
+//        super.onStart();
+//
+//        if(mAuth.getCurrentUser() != null){
+//            finish();
+//            Intent i = new Intent(this, UserMainActivity.class);
+//            startActivity(i);
+//        }
+//    }
+
 }

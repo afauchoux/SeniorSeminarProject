@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfile">
+    tools:context=".UserEditProfile">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,13 +20,21 @@
             android:text="Click on picture to upload profile picture" />
 
         <ImageView
-            android:id="@+id/userProfilePic"
+            android:id="@+id/userProfileImage"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginTop="18dp"
             android:background="@android:drawable/ic_menu_camera"
-            android:onClick="userProfilePicPressed"
+            android:clickable="true"
+            android:onClick="userProfileImagePressed"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBarProfile"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/userEditUsername"
@@ -34,16 +42,16 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:inputType="textPersonName"
-            android:text="Enter username" />
+            android:hint="Enter Username"
+            android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/userSaveProfileButton"
+            android:id="@+id/userSaveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:onClick="userSaveProfileButtonPressed"
             android:text="Save"
+            android:onClick="userSaveButtonPressed"
             android:textSize="18sp" />
 
     </LinearLayout>
