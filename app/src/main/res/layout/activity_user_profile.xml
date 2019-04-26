@@ -6,21 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".UserProfile">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:gravity="right"
-        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/userProfileBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="userProfileBackButtonPressed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
 
         <ImageButton
             android:id="@+id/userEditProfileButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:onClick="userEditProfileButtonPressed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_edit" />
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -38,7 +50,7 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/profileImage"
+            android:id="@+id/userProfileImage"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"

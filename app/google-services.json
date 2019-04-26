@@ -21,6 +21,10 @@
             "package_name": "com.example.seniorseminarproject",
             "certificate_hash": "46b9047b7b3b3c12c91025cb767fb243cfbbf15c"
           }
+        },
+        {
+          "client_id": "797804080176-jjb0pfiojvcf9ubtora10jc55fpc8k11.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [

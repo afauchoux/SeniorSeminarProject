@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -33,12 +36,16 @@ public class UserEditProfile extends AppCompatActivity {
 
     public ImageView userProfileImage;
     public EditText userEditUsername;
+    public EditText userEditFirstName;
+    public EditText userEditLastName;
     public Button userSaveButton;
     public ProgressBar progressBarProfile;
 
     private static final int CHOOSE_IMAGE = 101;
     public Uri uriProfileImage;
     public String profileImageUrl;
+
+    DatabaseReference databaseUsers;
 
     FirebaseAuth mAuth;
 
@@ -47,8 +54,12 @@ public class UserEditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit_profile);
 
+        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+
         this.userProfileImage = (ImageView)this.findViewById(R.id.userProfileImage);
         this.userEditUsername = (EditText)this.findViewById(R.id.userEditUsername);
+        this.userEditFirstName = (EditText)this.findViewById(R.id.userEditFirstName);
+        this.userEditLastName = (EditText)this.findViewById(R.id.userEditLastName);
         this.userSaveButton = (Button)this.findViewById(R.id.userSaveButton);
         this.progressBarProfile = (ProgressBar)this.findViewById(R.id.progressBarProfile);
 
@@ -62,10 +73,30 @@ public class UserEditProfile extends AppCompatActivity {
     }
 
     public void userSaveButtonPressed(View v){
-        saveUserInfo();
+        addUser();
+        saveUsernameInfo();
     }
 
-    private void saveUserInfo(){
+    private void addUser(){
+        String username = userEditUsername.getText().toString();
+        String firstName = userEditFirstName.getText().toString();
+        String lastName = userEditLastName.getText().toString();
+
+        if(!TextUtils.isEmpty(username) || !TextUtils.isEmpty(firstName) || !TextUtils.isEmpty(lastName)){
+            String userId = databaseUsers.push().getKey();
+
+            User user = new User(userId, username, firstName, lastName);
+
+            databaseUsers.child(userId).setValue(user);
+
+            Toast.makeText(this, "User Data Saved", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Please Enter All Data", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void saveUsernameInfo(){
         String username = userEditUsername.getText().toString();
 
         if(username.isEmpty()){

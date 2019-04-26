@@ -15,8 +15,9 @@ import com.google.firebase.auth.FirebaseUser;
 public class UserProfile extends AppCompatActivity {
 
     public ImageButton userEditProfileButton;
+    public ImageButton userProfileBackButton;
     public TextView usernameTV;
-    public ImageView profileImage;
+    public ImageView userProfileImage;
 
     FirebaseAuth mAuth;
 
@@ -26,7 +27,8 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         this.userEditProfileButton = (ImageButton)this.findViewById(R.id.userEditProfileButton);
-        this.profileImage = (ImageView)this.findViewById(R.id.profileImage);
+        this.userProfileBackButton = (ImageButton)this.findViewById(R.id.userProfileBackButton);
+        this.userProfileImage = (ImageView)this.findViewById(R.id.userProfileImage);
         this.usernameTV = (TextView)this.findViewById(R.id.usernameTV);
 
         mAuth = FirebaseAuth.getInstance();
@@ -39,6 +41,11 @@ public class UserProfile extends AppCompatActivity {
         this.startActivity(i);
     }
 
+    public void userProfileBackButtonPressed(View v){
+        Intent i = new Intent(this, UserMainActivity.class);
+        this.startActivity(i);
+    }
+
     private void loadUserInfo(){
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -46,7 +53,7 @@ public class UserProfile extends AppCompatActivity {
             if (user.getPhotoUrl() != null) {
                 Glide.with(this)
                         .load(user.getPhotoUrl().toString())
-                        .into(profileImage);
+                        .into(userProfileImage);
 
             }
 

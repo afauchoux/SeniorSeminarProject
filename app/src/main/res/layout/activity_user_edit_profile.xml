@@ -45,6 +45,24 @@
             android:hint="Enter Username"
             android:inputType="textPersonName" />
 
+        <EditText
+            android:id="@+id/userEditFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Enter First Name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/userEditLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Enter Last Name"
+            android:inputType="textPersonName" />
+
         <Button
             android:id="@+id/userSaveButton"
             android:layout_width="match_parent"
