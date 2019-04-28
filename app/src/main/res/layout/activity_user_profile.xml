@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProfile">
@@ -34,38 +35,50 @@
             app:srcCompat="@android:drawable/ic_menu_edit" />
     </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraitLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="93dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="User Profile"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/userProfileImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/userProfileImage"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
-            app:srcCompat="@android:drawable/ic_menu_camera" />
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:drawable/ic_menu_camera"
+            app:layout_constraintBottom_toTopOf="@+id/usernameTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <TextView
             android:id="@+id/usernameTV"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:text="Hello World"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:text="Test Username"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userProfileImage" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

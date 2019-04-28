@@ -75,6 +75,10 @@ public class UserEditProfile extends AppCompatActivity {
     public void userSaveButtonPressed(View v){
         addUser();
         saveUsernameInfo();
+        finish();
+        Intent i = new Intent(getApplicationContext(), UserProfile.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 
     private void addUser(){
