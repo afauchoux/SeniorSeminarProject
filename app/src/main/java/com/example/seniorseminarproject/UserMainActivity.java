@@ -16,6 +16,7 @@ public class UserMainActivity extends AppCompatActivity {
 
     public Button userProfileButton;
     public Button userScanQRCodeButton;
+    public Button userEventsButton;
     public Button testButton;
 
     @Override
@@ -25,6 +26,7 @@ public class UserMainActivity extends AppCompatActivity {
 
         this.testButton = (Button)this.findViewById(R.id.testButton);
         this.userProfileButton = (Button)this.findViewById(R.id.userProfileButton);
+        this.userEventsButton = (Button)this.findViewById(R.id.userEventsButton);
         userScanQRCodeButton = (Button)findViewById(R.id.userScanQRCodeButton);
         final Activity activity = this;
         userScanQRCodeButton.setOnClickListener(new View.OnClickListener() {
@@ -32,8 +34,9 @@ public class UserMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(activity);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                integrator.setPrompt("Scan");
+                integrator.setPrompt("Scan QR Code");
                 integrator.setCameraId(0);
+                integrator.setOrientationLocked(false);
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
                 integrator.initiateScan();
@@ -42,12 +45,17 @@ public class UserMainActivity extends AppCompatActivity {
     }
 
     public void testButtonPressed(View v){
-        Intent i = new Intent(this, AdminCreateQRCode.class);
+        Intent i = new Intent(this, AdminCreateEvent.class);
         this.startActivity(i);
     }
 
     public void userProfileButtonPressed(View v){
         Intent i = new Intent(this, UserProfile.class);
+        this.startActivity(i);
+    }
+
+    public void userEventsButtonPressed(View v){
+        Intent i = new Intent(this, UserSchedule.class);
         this.startActivity(i);
     }
 

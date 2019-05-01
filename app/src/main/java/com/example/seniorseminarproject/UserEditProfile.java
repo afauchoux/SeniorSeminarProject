@@ -82,9 +82,9 @@ public class UserEditProfile extends AppCompatActivity {
     }
 
     private void addUser(){
-        String username = userEditUsername.getText().toString();
-        String firstName = userEditFirstName.getText().toString();
-        String lastName = userEditLastName.getText().toString();
+        String username = userEditUsername.getText().toString().trim();
+        String firstName = userEditFirstName.getText().toString().trim();
+        String lastName = userEditLastName.getText().toString().trim();
 
         if(!TextUtils.isEmpty(username) || !TextUtils.isEmpty(firstName) || !TextUtils.isEmpty(lastName)){
             String userId = databaseUsers.push().getKey();
