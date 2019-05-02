@@ -29,7 +29,7 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         this.userEditProfileButton = (ImageButton)this.findViewById(R.id.userEditProfileButton);
-        this.userProfileBackButton = (ImageButton)this.findViewById(R.id.userEventsBackButton);
+        this.userProfileBackButton = (ImageButton)this.findViewById(R.id.userProfileBackButton);
         this.userProfileImage = (ImageView)this.findViewById(R.id.userProfileImage);
         this.usernameTV = (TextView)this.findViewById(R.id.usernameTV);
 

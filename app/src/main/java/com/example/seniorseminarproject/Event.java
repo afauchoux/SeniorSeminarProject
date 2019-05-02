@@ -7,19 +7,19 @@ public class Event {
     String eventTime;
     String eventDate;
     String eventDescription;
-    int pointsAwarded;
+    String  eventPoints;
 
     public Event(){
 
     }
 
-    public Event(String eventId, String eventName, String eventDate, String eventTime, String eventDescription, int pointsAwarded) {
+    public Event(String eventId, String eventName, String eventDate, String eventTime, String eventDescription, String eventPoints) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventTime = eventTime;
         this.eventDate = eventDate;
         this.eventDescription = eventDescription;
-        this.pointsAwarded = pointsAwarded;
+        this.eventPoints = eventPoints;
     }
 
     public String getEventId() {
@@ -42,7 +42,29 @@ public class Event {
         return eventDescription;
     }
 
-    public int getPointsAwarded() {
-        return pointsAwarded;
+    public String getEventPoints() {
+        return eventPoints;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public void setEventDescription(String eventDescription) { this.eventDescription = eventDescription; }
+
+    public void setEventPoints(String eventPoints) {
+        this.eventPoints = eventPoints;
     }
 }

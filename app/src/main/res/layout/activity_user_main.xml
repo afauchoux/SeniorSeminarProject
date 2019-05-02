@@ -83,7 +83,7 @@
             android:text="Scan"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/userEventsButton"
+            app:layout_constraintEnd_toStartOf="@+id/userEventsBackButton"
             app:layout_constraintStart_toEndOf="@+id/userProfileButton"
             app:layout_constraintTop_toTopOf="parent" />
 

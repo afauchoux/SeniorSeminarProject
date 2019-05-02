@@ -55,7 +55,7 @@ public class UserMainActivity extends AppCompatActivity {
     }
 
     public void userEventsButtonPressed(View v){
-        Intent i = new Intent(this, UserSchedule.class);
+        Intent i = new Intent(this, UserEvents.class);
         this.startActivity(i);
     }
 
