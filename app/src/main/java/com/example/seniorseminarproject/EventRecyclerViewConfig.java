@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class RecyclerViewConfig {
+public class EventRecyclerViewConfig {
     private Context mContext;
     private EventsAdapter mEventsAdapter;
 
@@ -25,6 +25,7 @@ public class RecyclerViewConfig {
         private TextView mEventName;
         private TextView mEventDate;
         private TextView mEventTime;
+        private TextView mEventLocation;
         private TextView mEventDescription;
         private TextView mEventPoints;
 
@@ -36,6 +37,7 @@ public class RecyclerViewConfig {
             mEventName = (TextView)itemView.findViewById(R.id.eventNameTV);
             mEventDate = (TextView)itemView.findViewById(R.id.eventDateTV);
             mEventTime = (TextView)itemView.findViewById(R.id.eventTimeTV);
+            mEventLocation = (TextView)itemView.findViewById(R.id.eventLocationTV);
             mEventDescription = (TextView)itemView.findViewById(R.id.eventDescriptionTV);
             mEventPoints = (TextView)itemView.findViewById(R.id.eventPointsTV);
         }
@@ -44,6 +46,7 @@ public class RecyclerViewConfig {
             mEventName.setText(event.getEventName());
             mEventDate.setText(event.getEventDate());
             mEventTime.setText(event.getEventTime());
+            mEventLocation.setText(event.getEventLocation());
             mEventDescription.setText(event.getEventDescription());
             mEventPoints.setText(event.getEventPoints());
             this.key = key;

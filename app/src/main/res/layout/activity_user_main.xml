@@ -44,7 +44,29 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/testQRButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="testQRButtonPressed"
+                    android:text="Test Create QR Code" />
+
+                <Button
+                    android:id="@+id/testEventButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="testEventButtonPressed"
+                    android:text="Test Create Event" />
+
+                <Button
+                    android:id="@+id/testRewardButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="testRewardButtonPressed"
+                    android:text="Test Create Reward" />
+            </LinearLayout>
         </ScrollView>
     </android.support.constraint.ConstraintLayout>
 
@@ -61,6 +83,7 @@
             android:id="@+id/userProfileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
@@ -83,7 +106,6 @@
             android:text="Scan"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/userEventsBackButton"
             app:layout_constraintStart_toEndOf="@+id/userProfileButton"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,25 +115,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:onClick="userEventsButtonPressed"
             android:text="Events"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/testButton"
             app:layout_constraintStart_toEndOf="@+id/userScanQRCodeButton"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/testButton"
+            android:id="@+id/userRewardsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:onClick="testButtonPressed"
-            android:text="Test"
+            android:onClick="userRewardsButtonPressed"
+            android:text="Rewards"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

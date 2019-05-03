@@ -45,9 +45,10 @@ public class UserEditProfile extends AppCompatActivity {
     public Uri uriProfileImage;
     public String profileImageUrl;
 
-    DatabaseReference databaseUsers;
+    private DatabaseReference databaseUsers;
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,8 @@ public class UserEditProfile extends AppCompatActivity {
         String lastName = userEditLastName.getText().toString().trim();
 
         if(!TextUtils.isEmpty(username) || !TextUtils.isEmpty(firstName) || !TextUtils.isEmpty(lastName)){
-            String userId = databaseUsers.push().getKey();
+            //String userId = databaseUsers.push().getKey();
+            String userId = mAuth.getCurrentUser().getUid();
 
             User user = new User(userId, username, firstName, lastName);
 

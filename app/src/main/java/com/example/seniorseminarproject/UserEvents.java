@@ -16,11 +16,11 @@ public class UserEvents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_events);
-        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerviewEvents);
+        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerviewRewards);
         new EventDatabaseHelper().readEvents(new EventDatabaseHelper.DataStatus() {
             @Override
             public void DataLoaded(List<Event> events, List<String> keys) {
-                new RecyclerViewConfig().setConfig(mRecyclerView, UserEvents.this, events, keys);
+                new EventRecyclerViewConfig().setConfig(mRecyclerView, UserEvents.this, events, keys);
             }
 
             @Override
@@ -38,11 +38,6 @@ public class UserEvents extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void eventsBackButtonPressed(View v){
-        Intent i = new Intent(this, UserMainActivity.class);
-        this.startActivity(i);
     }
 
 }

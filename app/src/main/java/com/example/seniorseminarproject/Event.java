@@ -6,18 +6,20 @@ public class Event {
     String eventName;
     String eventTime;
     String eventDate;
+    String eventLocation;
     String eventDescription;
-    String  eventPoints;
+    String eventPoints;
 
     public Event(){
 
     }
 
-    public Event(String eventId, String eventName, String eventDate, String eventTime, String eventDescription, String eventPoints) {
+    public Event(String eventId, String eventName, String eventDate, String eventTime, String eventLocation, String eventDescription, String eventPoints) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventTime = eventTime;
         this.eventDate = eventDate;
+        this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPoints = eventPoints;
     }
@@ -37,6 +39,8 @@ public class Event {
     public String getEventTime() {
         return eventTime;
     }
+
+    public String getEventLocation() { return eventLocation; }
 
     public String getEventDescription() {
         return eventDescription;
@@ -61,6 +65,8 @@ public class Event {
     public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
+
+    public void setEventLocation(String eventLocation) { this.eventLocation = eventLocation; }
 
     public void setEventDescription(String eventDescription) { this.eventDescription = eventDescription; }
 

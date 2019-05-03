@@ -16,6 +16,7 @@ public class AdminCreateEvent extends AppCompatActivity {
     public EditText eventNameET;
     public EditText eventDateET;
     public EditText eventTimeET;
+    public EditText eventLocationET;
     public EditText eventDescriptionET;
     public EditText eventPointsET;
     public Button saveEventButton;
@@ -32,6 +33,7 @@ public class AdminCreateEvent extends AppCompatActivity {
         this.eventNameET = (EditText)this.findViewById(R.id.eventNameET);
         this.eventDateET = (EditText)this.findViewById(R.id.eventDateET);
         this.eventTimeET = (EditText)this.findViewById(R.id.eventTimeET);
+        this.eventLocationET = (EditText)this.findViewById(R.id.eventLocationET);
         this.eventDescriptionET = (EditText)this.findViewById(R.id.eventDescriptionET);
         this.eventPointsET = (EditText)this.findViewById(R.id.eventPointsET);
         this.saveEventButton = (Button)this.findViewById(R.id.saveEventButton);
@@ -45,14 +47,15 @@ public class AdminCreateEvent extends AppCompatActivity {
         String eventName = eventNameET.getText().toString().trim();
         String eventDate = eventDateET.getText().toString().trim();
         String eventTime = eventTimeET.getText().toString().trim();
+        String eventLocation = eventLocationET.getText().toString().trim();
         String eventDescription = eventDescriptionET.getText().toString().trim();
         String eventPoints = eventPointsET.getText().toString().trim();
         //int pointsAwardedInt = Integer.parseInt(pointsAwarded);
 
-        if(!TextUtils.isEmpty(eventName) || !TextUtils.isEmpty(eventDate) || !TextUtils.isEmpty(eventTime) || !TextUtils.isEmpty(eventDescription) || !TextUtils.isEmpty(eventPoints)){
+        if(!TextUtils.isEmpty(eventName) || !TextUtils.isEmpty(eventDate) || !TextUtils.isEmpty(eventTime) || !TextUtils.isEmpty(eventLocation) || !TextUtils.isEmpty(eventDescription) || !TextUtils.isEmpty(eventPoints)){
             String eventId = databaseEvents.push().getKey();
 
-            Event event = new Event(eventId, eventName, eventDate, eventTime, eventDescription, eventPoints);
+            Event event = new Event(eventId, eventName, eventDate, eventTime, eventLocation, eventDescription, eventPoints);
 
             databaseEvents.child(eventId).setValue(event);
 
