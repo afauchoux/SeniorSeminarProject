@@ -1,14 +1,22 @@
 package com.example.seniorseminarproject;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 public class UserRewards extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
+    private String mCost;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReferenceRewards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,5 +44,10 @@ public class UserRewards extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void rewardBuyButtonPressed(View v){
+        Intent i = new Intent(this, UserBuyReward.class);
+        this.startActivity(i);
     }
 }

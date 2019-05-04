@@ -27,7 +27,7 @@ public class UserProfile extends AppCompatActivity {
     public ImageButton userEditProfileButton;
     public ImageButton userProfileBackButton;
     public TextView usernameTV;
-    public  TextView userFullNameTV;
+    public TextView userFullNameTV;
     public TextView userPointsTV;
     public ImageView userProfileImage;
 
@@ -67,7 +67,7 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-        loadUserInfo();
+        //loadUserInfo();
     }
 
     private void showData(DataSnapshot dataSnapshot){
@@ -75,7 +75,7 @@ public class UserProfile extends AppCompatActivity {
             User user = new User();
             user.setFirstName(ds.child(userId).getValue(User.class).getFirstName());
             user.setLastName(ds.child(userId).getValue(User.class).getLastName());
-            user.setPoints(ds.child(userId).getValue(User.class).getPoints());
+            //user.setPoints(ds.child(userId).getValue(User.class).getPoints());
 
             ArrayList<String> array = new ArrayList<>();
             array.add(user.getFirstName());
@@ -86,12 +86,12 @@ public class UserProfile extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        loadUserInfo();
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        loadUserInfo();
+//    }
 
     public void userEditProfileButtonPressed(View v){
         Intent i = new Intent(this, UserEditProfile.class);

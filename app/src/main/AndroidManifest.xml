@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserEvents"></activity>
+        <activity android:name=".AdminEditEvent"></activity>
+        <activity android:name=".AdminViewAllRewards" />
+        <activity android:name=".AdminViewAllEvents" />
+        <activity android:name=".AdminViewAllUsers" />
+        <activity android:name=".UserBuyReward" />
+        <activity android:name=".UserEvents" />
         <activity android:name=".AdminCreateEvent" />
         <activity android:name=".UserEditProfile" />
         <activity android:name=".UserScanQRCode" />

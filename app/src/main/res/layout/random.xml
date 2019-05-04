@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UserCreateAccount">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,20 +14,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/userCreateEmailTV"
+            android:id="@+id/adminEmailTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -39,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/userCreateEmailET"
+            android:id="@+id/adminEmailET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -49,11 +37,11 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/userCreateEmailTV"
+            app:layout_constraintStart_toEndOf="@+id/adminEmailTV"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/userCreatePasswordTV"
+            android:id="@+id/adminPasswordTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -62,10 +50,10 @@
             android:text="Password:"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userCreateEmailTV" />
+            app:layout_constraintTop_toBottomOf="@+id/adminEmailTV" />
 
         <EditText
-            android:id="@+id/userCreatePasswordET"
+            android:id="@+id/adminPasswordET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -75,11 +63,11 @@
             android:ems="10"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/userCreatePasswordTV"
-            app:layout_constraintTop_toBottomOf="@+id/userCreateEmailET" />
+            app:layout_constraintStart_toEndOf="@+id/adminPasswordTV"
+            app:layout_constraintTop_toBottomOf="@+id/adminEmailET" />
 
         <Button
-            android:id="@+id/userCreateAccountButton"
+            android:id="@+id/adminLoginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -88,8 +76,8 @@
             android:onClick="userCreateAccountButtonPressed"
             android:text="Create Account"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userCreatePasswordET" />
-
+            app:layout_constraintTop_toBottomOf="@+id/adminPasswordET" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

@@ -38,7 +38,7 @@ public class UserCreateAccount extends AppCompatActivity {
         this.userCreateEmailET = (EditText) this.findViewById(R.id.userCreateEmailET);
         this.userCreatePasswordET = (EditText) this.findViewById(R.id.userCreatePasswordET);
         this.userCreateAccountButton = (Button) this.findViewById(R.id.userCreateAccountButton);
-        this.progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
+        this.progressBar = (ProgressBar) this.findViewById(R.id.progressBar2);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();

@@ -19,18 +19,10 @@ public class UserMainActivity extends AppCompatActivity {
     public Button userEventsButton;
     public Button userRewardsButton;
 
-    public Button testQRButton;
-    public Button testEventButton;
-    public Button testRewardButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
-
-        this.testQRButton = (Button)this.findViewById(R.id.testQRButton);
-        this.testEventButton = (Button)this.findViewById(R.id.testEventButton);
-        this.testRewardButton = (Button)this.findViewById(R.id.testRewardButton);
 
         this.userProfileButton = (Button)this.findViewById(R.id.userProfileButton);
         this.userEventsButton = (Button)this.findViewById(R.id.userEventsButton);
@@ -50,21 +42,6 @@ public class UserMainActivity extends AppCompatActivity {
                 integrator.initiateScan();
             }
         });
-    }
-
-    public void testQRButtonPressed(View v){
-        Intent i = new Intent(this, AdminCreateQRCode.class);
-        this.startActivity(i);
-    }
-
-    public void testEventButtonPressed(View v){
-        Intent i = new Intent(this, AdminCreateEvent.class);
-        this.startActivity(i);
-    }
-
-    public void testRewardButtonPressed(View v){
-        Intent i = new Intent(this, AdminCreateReward.class);
-        this.startActivity(i);
     }
 
     public void userRewardsButtonPressed(View v){

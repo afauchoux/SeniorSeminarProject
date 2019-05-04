@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -37,10 +39,14 @@ public class AdminCreateQRCode extends AppCompatActivity {
     public Uri qrCode;
     public String qrCodeUrl;
 
+    private StorageReference mStorageRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_create_qrcode);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         this.generatePointsET = (EditText)this.findViewById(R.id.generatePointsET);
         this.generateQRCodeButton = (Button)this.findViewById(R.id.generateQRCodeButton);
@@ -66,21 +72,10 @@ public class AdminCreateQRCode extends AppCompatActivity {
     }
 
     public void saveQRCodeButtonPressed(View v){
-
+        uploadQRCodeToFirebaseStorage();
     }
 
     private void uploadQRCodeToFirebaseStorage() {
-        StorageReference qrCodeRef = FirebaseStorage.getInstance().getReference("qr_codes/" + System.currentTimeMillis() + ".jpg");
-        if (qrCode != null) {
-            //progressBarProfile.setVisibility(View.VISIBLE);
-            qrCodeRef.putFile(qrCode).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    //progressBarProfile.setVisibility(View.GONE);
 
-                    qrCodeUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                }
-            });
-        }
     }
 }

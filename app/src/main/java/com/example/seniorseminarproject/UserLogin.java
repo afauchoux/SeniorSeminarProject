@@ -60,7 +60,7 @@ public class UserLogin extends AppCompatActivity {
         userLogin();
     }
 
-    private void userForgotPasswordTextPressed(View v){
+    public void userForgotPasswordTextPressed(View v){
         Intent i = new Intent(this, UserForgotPassword.class);
         this.startActivity(i);
     }
@@ -87,13 +87,7 @@ public class UserLogin extends AppCompatActivity {
         }
 
         if(password.isEmpty()){
-            userPasswordET.setError("Password is required");
-            userPasswordET.requestFocus();
-            return;
-        }
-
-        if(password.length() < 6){
-            userPasswordET.setError("Minimum length of password is 6 characters");
+            userPasswordET.setError("Please Enter Password");
             userPasswordET.requestFocus();
             return;
         }
