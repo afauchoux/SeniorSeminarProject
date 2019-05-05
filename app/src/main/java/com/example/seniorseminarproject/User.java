@@ -6,7 +6,7 @@ public class User {
     String username;
     String firstName;
     String lastName;
-    int points;
+    String points;
 
     public User () {
 
@@ -51,11 +51,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getPoints() {
+    public String getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(String points) {
         this.points = points;
     }
 }

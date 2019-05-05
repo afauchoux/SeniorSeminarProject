@@ -75,12 +75,12 @@ public class UserProfile extends AppCompatActivity {
             User user = new User();
             user.setFirstName(ds.child(userId).getValue(User.class).getFirstName());
             user.setLastName(ds.child(userId).getValue(User.class).getLastName());
-            //user.setPoints(ds.child(userId).getValue(User.class).getPoints());
+            user.setPoints(ds.child(userId).getValue(User.class).getPoints());
 
             ArrayList<String> array = new ArrayList<>();
             array.add(user.getFirstName());
             array.add(user.getLastName());
-            //array.add(user.getPoints());
+            array.add(user.getPoints());
             ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
             mListView.setAdapter(adapter);
         }
