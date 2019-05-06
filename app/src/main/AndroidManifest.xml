@@ -22,7 +22,6 @@
         <activity android:name=".UserProfile" />
         <activity android:name=".UserMainActivity" />
         <activity android:name=".UserForgotPassword" />
-        <activity android:name=".AdminRewards" />
         <activity android:name=".AdminMainActivity" />
         <activity android:name=".UserLogin" />
         <activity android:name=".AdminLogin" />

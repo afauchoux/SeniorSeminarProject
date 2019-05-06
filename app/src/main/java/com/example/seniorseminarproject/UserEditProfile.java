@@ -77,7 +77,7 @@ public class UserEditProfile extends AppCompatActivity {
         addUser();
         saveUsernameInfo();
         finish();
-        Intent i = new Intent(getApplicationContext(), UserProfile.class);
+        Intent i = new Intent(getApplicationContext(), UserMainActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
@@ -86,12 +86,13 @@ public class UserEditProfile extends AppCompatActivity {
         String username = userEditUsername.getText().toString().trim();
         String firstName = userEditFirstName.getText().toString().trim();
         String lastName = userEditLastName.getText().toString().trim();
+        String points = "0";
 
         if(!TextUtils.isEmpty(username) || !TextUtils.isEmpty(firstName) || !TextUtils.isEmpty(lastName)){
             //String userId = databaseUsers.push().getKey();
             String userId = mAuth.getCurrentUser().getUid();
 
-            User user = new User(userId, username, firstName, lastName);
+            User user = new User(userId, username, firstName, lastName, points);
 
             databaseUsers.child(userId).setValue(user);
 
@@ -113,10 +114,9 @@ public class UserEditProfile extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
 
-        if(user != null && profileImageUrl != null){
+        if(user != null){
             UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
                     .setDisplayName(username)
-                    .setPhotoUri(Uri.parse(profileImageUrl))
                     .build();
 
             user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -128,6 +128,22 @@ public class UserEditProfile extends AppCompatActivity {
                 }
             });
         }
+
+//        if(user != null && profileImageUrl != null){
+//            UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
+//                    .setDisplayName(username)
+//                    .setPhotoUri(Uri.parse(profileImageUrl))
+//                    .build();
+//
+//            user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                @Override
+//                public void onComplete(@NonNull Task<Void> task) {
+//                    if(task.isSuccessful()){
+//                        Toast.makeText(UserEditProfile.this, "Profile updated", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//            });
+//        }
 
     }
 

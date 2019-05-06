@@ -46,8 +46,8 @@ public class UserRewards extends AppCompatActivity {
         });
     }
 
-    public void rewardBuyButtonPressed(View v){
-        Intent i = new Intent(this, UserBuyReward.class);
-        this.startActivity(i);
-    }
+//    public void rewardBuyButtonPressed(View v){
+//        Intent i = new Intent(this, UserBuyReward.class);
+//        this.startActivity(i);
+//    }
 }
