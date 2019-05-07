@@ -16,6 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class UserBuyReward extends AppCompatActivity {
 
     private TextView mRewardBuyName;
@@ -24,6 +27,7 @@ public class UserBuyReward extends AppCompatActivity {
     private TextView mRewardBuyYourPoints;
     private Button mRewardFinalBuyButton;
 
+    private DatabaseReference databaseNewsfeed;
     private DatabaseReference mRef;
     private DatabaseReference mPoints;
     private FirebaseAuth mAuth;
@@ -44,6 +48,7 @@ public class UserBuyReward extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_buy_reward);
 
+        databaseNewsfeed = FirebaseDatabase.getInstance().getReference("newsfeed");
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         userId = user.getUid();
@@ -99,11 +104,25 @@ public class UserBuyReward extends AppCompatActivity {
             int afterPaymentInt = paymentInt - costInt;
             String afterPayment = Integer.toString(afterPaymentInt);
             mPoints.setValue(afterPayment);
+            writeToNewsfeed();
+            Toast.makeText(this, "Purchase Complete", Toast.LENGTH_LONG).show();
         }
         else{
             Toast.makeText(this, "You Do Not Have Enough Points For This Reward", Toast.LENGTH_LONG).show();
         }
     }
 
+    private void writeToNewsfeed(){
+        userId = user.getUid();
+        String username = user.getDisplayName();
+        String reward = mRewardBuyName.getText().toString();
+        String newsfeedId = databaseNewsfeed.push().getKey();
+        String newsfeedEvent = username + " bought " + reward + ".";
+        Date currTime = Calendar.getInstance().getTime();
+        String newsfeedTime = currTime.toString();
 
+        Newsfeed newsfeed = new Newsfeed(newsfeedId, newsfeedEvent, newsfeedTime);
+
+        databaseNewsfeed.child(newsfeedId).setValue(newsfeed);
+    }
 }

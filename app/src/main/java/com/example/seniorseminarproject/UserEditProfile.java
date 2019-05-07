@@ -77,7 +77,7 @@ public class UserEditProfile extends AppCompatActivity {
         addUser();
         saveUsernameInfo();
         finish();
-        Intent i = new Intent(getApplicationContext(), UserMainActivity.class);
+        Intent i = new Intent(getApplicationContext(), UserProfile.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }

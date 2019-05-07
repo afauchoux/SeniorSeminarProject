@@ -14,9 +14,6 @@ import java.util.List;
 public class UserRewards extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private String mCost;
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mReferenceRewards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

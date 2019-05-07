@@ -8,8 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class AdminCreateEvent extends AppCompatActivity {
 
@@ -21,7 +26,11 @@ public class AdminCreateEvent extends AppCompatActivity {
     public EditText eventPointsET;
     public Button saveEventButton;
 
-    DatabaseReference databaseEvents;
+    private DatabaseReference databaseEvents;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseNewsfeed;
+    private FirebaseUser user;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +38,9 @@ public class AdminCreateEvent extends AppCompatActivity {
         setContentView(R.layout.activity_admin_create_event);
 
         databaseEvents = FirebaseDatabase.getInstance().getReference("events");
+        mAuth = FirebaseAuth.getInstance();
+        databaseNewsfeed = FirebaseDatabase.getInstance().getReference("newsfeed");
+        user = mAuth.getCurrentUser();
 
         this.eventNameET = (EditText)this.findViewById(R.id.eventNameET);
         this.eventDateET = (EditText)this.findViewById(R.id.eventDateET);
@@ -41,6 +53,7 @@ public class AdminCreateEvent extends AppCompatActivity {
 
     public void saveEventButtonPressed(View v){
         addEvent();
+        writeToNewsfeed();
     }
 
     private void addEvent(){
@@ -64,5 +77,19 @@ public class AdminCreateEvent extends AppCompatActivity {
         else{
             Toast.makeText(this, "Please Enter All Information", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void writeToNewsfeed(){
+        userId = user.getUid();
+        String username = user.getDisplayName();
+        String event = eventNameET.getText().toString();
+        String newsfeedId = databaseNewsfeed.push().getKey();
+        String newsfeedEvent = username + " created the event: " + event + ".";
+        Date currTime = Calendar.getInstance().getTime();
+        String newsfeedTime = currTime.toString();
+
+        Newsfeed newsfeed = new Newsfeed(newsfeedId, newsfeedEvent, newsfeedTime);
+
+        databaseNewsfeed.child(newsfeedId).setValue(newsfeed);
     }
 }

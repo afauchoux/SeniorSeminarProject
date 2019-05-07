@@ -8,8 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class AdminCreateReward extends AppCompatActivity {
 
@@ -19,6 +24,10 @@ public class AdminCreateReward extends AppCompatActivity {
     public Button saveRewardButton;
 
     DatabaseReference databaseRewards;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseNewsfeed;
+    private FirebaseUser user;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +35,9 @@ public class AdminCreateReward extends AppCompatActivity {
         setContentView(R.layout.activity_admin_create_reward);
 
         databaseRewards = FirebaseDatabase.getInstance().getReference("rewards");
+        mAuth = FirebaseAuth.getInstance();
+        databaseNewsfeed = FirebaseDatabase.getInstance().getReference("newsfeed");
+        user = mAuth.getCurrentUser();
 
         this.rewardNameET = (EditText)this.findViewById(R.id.rewardNameET);
         this.rewardCostET = (EditText)this.findViewById(R.id.rewardCostET);
@@ -35,6 +47,7 @@ public class AdminCreateReward extends AppCompatActivity {
 
     public void saveRewardButtonPressed(View v){
         addReward();
+        writeToNewsfeed();
     }
 
     private void addReward(){
@@ -54,5 +67,19 @@ public class AdminCreateReward extends AppCompatActivity {
         else{
             Toast.makeText(this, "Please Enter All Information", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void writeToNewsfeed(){
+        userId = user.getUid();
+        String username = user.getDisplayName();
+        String reward = rewardNameET.getText().toString();
+        String newsfeedId = databaseNewsfeed.push().getKey();
+        String newsfeedEvent = username + " created the reward: " + reward + ".";
+        Date currTime = Calendar.getInstance().getTime();
+        String newsfeedTime = currTime.toString();
+
+        Newsfeed newsfeed = new Newsfeed(newsfeedId, newsfeedEvent, newsfeedTime);
+
+        databaseNewsfeed.child(newsfeedId).setValue(newsfeed);
     }
 }

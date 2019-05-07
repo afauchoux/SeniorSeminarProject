@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,34 +23,45 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.List;
+
 public class UserMainActivity extends AppCompatActivity {
 
-    public TextView userUsername;
-    public TextView userTotalPoints;
     public Button userProfileButton;
     public Button userScanQRCodeButton;
     public Button userEventsButton;
     public Button userRewardsButton;
 
-    private FirebaseUser user;
-    private FirebaseAuth mAuth;
-    private DatabaseReference mRef;
-    private String userId;
-    private DatabaseReference mPoints;
+    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
 
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        userId = user.getUid();
-        mRef = FirebaseDatabase.getInstance().getReference("users");
-        mPoints = mRef.child(userId).child("points");
+        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerviewNewsfeed);
+        new NewsfeedDatabaseHelper().readNewsfeeds(new NewsfeedDatabaseHelper.DataStatus() {
+            @Override
+            public void DataLoaded(List<Newsfeed> newsfeeds, List<String> keys) {
+                new NewsfeedRecyclerViewConfig().setConfig(mRecyclerView, UserMainActivity.this, newsfeeds, keys);
+            }
 
-        this.userUsername = (TextView)this.findViewById(R.id.userUsernameTV);
-        this.userTotalPoints = (TextView)this.findViewById(R.id.userTotalPointsTV);
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+
         this.userProfileButton = (Button)this.findViewById(R.id.userProfileButton);
         this.userEventsButton = (Button)this.findViewById(R.id.userEventsButton);
         this.userRewardsButton = (Button)this.findViewById(R.id.userRewardsButton);
@@ -68,21 +80,6 @@ public class UserMainActivity extends AppCompatActivity {
                 integrator.initiateScan();
             }
         });
-
-        mPoints.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String points = dataSnapshot.getValue(String.class);
-                userTotalPoints.setText(points);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        loadUserInfo();
     }
 
     public void testButtonPressed(View v){
@@ -121,13 +118,4 @@ public class UserMainActivity extends AppCompatActivity {
         }
     }
 
-    private void loadUserInfo(){
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        if(user != null){
-            if (user.getDisplayName() != null) {
-                userUsername.setText(user.getDisplayName());
-            }
-        }
-    }
 }
