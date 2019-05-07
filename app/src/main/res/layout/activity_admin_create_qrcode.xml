@@ -6,9 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".AdminCreateQRCode">
 
+    <include
+        android:id="@+id/toolbarAdminCreateQRCode"
+        layout="@layout/toolbar" />
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdminCreateQRCode">
 
         <TextView
             android:id="@+id/textView6"

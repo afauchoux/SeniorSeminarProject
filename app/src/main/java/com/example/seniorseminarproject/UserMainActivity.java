@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,14 +24,27 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class UserMainActivity extends AppCompatActivity {
+
+    private Toolbar toolbarUserMainActivity;
 
     public Button userProfileButton;
     public Button userScanQRCodeButton;
     public Button userEventsButton;
     public Button userRewardsButton;
+    private String scannedData;
+
+    private DatabaseReference databaseNewsfeed;
+    private DatabaseReference mRef;
+    private DatabaseReference mPoints;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private String userId;
+    private String points;
 
     private RecyclerView mRecyclerView;
 
@@ -38,6 +52,10 @@ public class UserMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
+
+        toolbarUserMainActivity = (Toolbar)this.findViewById(R.id.toolbarMainActivity);
+        toolbarUserMainActivity.setTitle("Incentivate");
+        setSupportActionBar(toolbarUserMainActivity);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerviewNewsfeed);
         new NewsfeedDatabaseHelper().readNewsfeeds(new NewsfeedDatabaseHelper.DataStatus() {
@@ -80,11 +98,24 @@ public class UserMainActivity extends AppCompatActivity {
                 integrator.initiateScan();
             }
         });
-    }
 
-    public void testButtonPressed(View v){
-        Intent i = new Intent(this, UserEditProfile.class);
-        this.startActivity(i);
+        databaseNewsfeed = FirebaseDatabase.getInstance().getReference("newsfeed");
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        userId = user.getUid();
+        mRef = FirebaseDatabase.getInstance().getReference("users");
+        mPoints = mRef.child(userId).child("points");
+        mPoints.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                points = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void userRewardsButtonPressed(View v){
@@ -106,11 +137,14 @@ public class UserMainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null){
-            if(result.getContents() == null){
-                Toast.makeText(this, "You Cancelled The Scan", Toast.LENGTH_LONG).show();
+            if(result.getContents() != null){
+                scannedData = result.getContents();
+                writeToNewsfeed();
+                updateUserPoints(scannedData);
+                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
             }
             else{
-                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "You Cancelled The Scan", Toast.LENGTH_LONG).show();
             }
         }
         else{
@@ -118,4 +152,33 @@ public class UserMainActivity extends AppCompatActivity {
         }
     }
 
+    private void getUserPoints(DataSnapshot dataSnapshot){
+        for(DataSnapshot ds : dataSnapshot.getChildren()){
+            User user = new User();
+            user.setPoints(ds.child(userId).getValue(User.class).getPoints());
+        }
+    }
+
+    private void updateUserPoints(String scannedData){
+        int scannedPointsInt = Integer.parseInt(scannedData);
+        int pointsInt = Integer.parseInt(points);
+        int newPointTotalInt = pointsInt + scannedPointsInt;
+        String newPointTotal = Integer.toString(newPointTotalInt);
+
+        mPoints.setValue(newPointTotal);
+    }
+
+    private void writeToNewsfeed(){
+        userId = user.getUid();
+        String username = user.getDisplayName();
+        String pointsAdded = scannedData;
+        String newsfeedId = databaseNewsfeed.push().getKey();
+        String newsfeedEvent = username + " claimed " + pointsAdded + " points.";
+        Date currTime = Calendar.getInstance().getTime();
+        String newsfeedTime = currTime.toString();
+
+        Newsfeed newsfeed = new Newsfeed(newsfeedId, newsfeedEvent, newsfeedTime);
+
+        databaseNewsfeed.child(newsfeedId).setValue(newsfeed);
+    }
 }

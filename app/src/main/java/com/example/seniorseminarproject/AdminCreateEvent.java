@@ -2,6 +2,7 @@ package com.example.seniorseminarproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class AdminCreateEvent extends AppCompatActivity {
+
+    private Toolbar toolbarAdminCreateEvent;
 
     public EditText eventNameET;
     public EditText eventDateET;
@@ -36,6 +39,10 @@ public class AdminCreateEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_create_event);
+
+        toolbarAdminCreateEvent = (Toolbar) this.findViewById(R.id.toolbarAdminCreateEvent);
+        toolbarAdminCreateEvent.setTitle("Create Event");
+        setSupportActionBar(toolbarAdminCreateEvent);
 
         databaseEvents = FirebaseDatabase.getInstance().getReference("events");
         mAuth = FirebaseAuth.getInstance();

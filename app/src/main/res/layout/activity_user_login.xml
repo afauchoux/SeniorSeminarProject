@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".UserLogin">
 
+    <include
+        android:id="@+id/toolbarUserLogin"
+        layout="@layout/toolbar" />
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

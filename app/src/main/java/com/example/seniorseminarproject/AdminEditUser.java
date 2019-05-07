@@ -2,6 +2,7 @@ package com.example.seniorseminarproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 import java.util.List;
 
 public class AdminEditUser extends AppCompatActivity {
+
+    private Toolbar toolbarAdminEditUser;
 
     private EditText editUsername;
     private EditText editFirstName;
@@ -28,6 +31,10 @@ public class AdminEditUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_edit_user);
+
+        toolbarAdminEditUser = (Toolbar)this.findViewById(R.id.toolbarAdminEditUser);
+        toolbarAdminEditUser.setTitle("Edit User");
+        setSupportActionBar(toolbarAdminEditUser);
 
         key = getIntent().getStringExtra("key");
         username = getIntent().getStringExtra("username");

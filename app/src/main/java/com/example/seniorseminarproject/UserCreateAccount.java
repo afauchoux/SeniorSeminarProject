@@ -3,6 +3,7 @@ package com.example.seniorseminarproject;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -23,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class UserCreateAccount extends AppCompatActivity {
 
+    private Toolbar toolbarUserCreateAccount;
+
     public EditText userCreateEmailET;
     public EditText userCreatePasswordET;
     public Button userCreateAccountButton;
@@ -34,6 +37,10 @@ public class UserCreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_create_account);
+
+        toolbarUserCreateAccount = (Toolbar)this.findViewById(R.id.toolbarUserCreateAccount);
+        toolbarUserCreateAccount.setTitle("Create Account");
+        setSupportActionBar(toolbarUserCreateAccount);
 
         this.userCreateEmailET = (EditText) this.findViewById(R.id.userCreateEmailET);
         this.userCreatePasswordET = (EditText) this.findViewById(R.id.userCreatePasswordET);

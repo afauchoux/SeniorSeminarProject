@@ -2,6 +2,7 @@ package com.example.seniorseminarproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,8 @@ import java.util.Date;
 
 public class AdminCreateReward extends AppCompatActivity {
 
+    private Toolbar toolbarAdminCreateReward;
+
     public EditText rewardNameET;
     public EditText rewardCostET;
     public EditText rewardDescriptionET;
@@ -33,6 +36,10 @@ public class AdminCreateReward extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_create_reward);
+
+        toolbarAdminCreateReward = (Toolbar)this.findViewById(R.id.toolbarAdminCreateReward);
+        toolbarAdminCreateReward.setTitle("Create Reward");
+        setSupportActionBar(toolbarAdminCreateReward);
 
         databaseRewards = FirebaseDatabase.getInstance().getReference("rewards");
         mAuth = FirebaseAuth.getInstance();

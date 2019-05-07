@@ -3,10 +3,13 @@ package com.example.seniorseminarproject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
 public class AdminMainActivity extends AppCompatActivity {
+
+    private Toolbar toolbarAdminMainActivity;
 
     public Button createEventButton;
     public Button createRewardButton;
@@ -19,6 +22,10 @@ public class AdminMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
+
+        toolbarAdminMainActivity = (Toolbar)this.findViewById(R.id.toolbarMainActivity);
+        toolbarAdminMainActivity.setTitle("Incentivate Admin");
+        setSupportActionBar(toolbarAdminMainActivity);
 
         this.createEventButton = (Button)this.findViewById(R.id.createEventButton);
         this.createRewardButton = (Button)this.findViewById(R.id.createRewardButton);

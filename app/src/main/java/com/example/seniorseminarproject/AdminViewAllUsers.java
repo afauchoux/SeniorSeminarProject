@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import java.util.List;
 
 public class AdminViewAllUsers extends AppCompatActivity {
+
+    private Toolbar toolbarAdminUsers;
 
     private RecyclerView mRecyclerView;
 
@@ -16,6 +19,11 @@ public class AdminViewAllUsers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_view_all_users);
+
+        toolbarAdminUsers = (Toolbar)this.findViewById(R.id.toolbarAdminUsers);
+        toolbarAdminUsers.setTitle("Edit Users");
+        setSupportActionBar(toolbarAdminUsers);
+
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerviewAllUsers);
         new AdminUserDatabaseHelper().readUsers(new AdminUserDatabaseHelper.DataStatus() {
             @Override

@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import java.util.List;
 
 public class AdminViewAllEvents extends AppCompatActivity {
+
+    private Toolbar toolbarAdminEvents;
 
     private RecyclerView mRecyclerView;
 
@@ -16,6 +19,11 @@ public class AdminViewAllEvents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_view_all_events);
+
+        toolbarAdminEvents = (Toolbar)this.findViewById(R.id.toolbarAdminEvents);
+        toolbarAdminEvents.setTitle("Edit Events");
+        setSupportActionBar(toolbarAdminEvents);
+
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerviewAllEvents);
         new AdminEventDatabaseHelper().readEvents(new AdminEventDatabaseHelper.DataStatus() {
             @Override

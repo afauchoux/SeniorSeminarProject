@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -22,6 +23,8 @@ import java.util.List;
 
 public class UserProfile extends AppCompatActivity {
 
+    private Toolbar toolbarUserProfile;
+
     public TextView userUsername;
     public TextView userTotalPoints;
     public ImageButton editProfileButton;
@@ -36,6 +39,10 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        toolbarUserProfile = (Toolbar)this.findViewById(R.id.toolbarUserProfile);
+        toolbarUserProfile.setTitle("Profile");
+        setSupportActionBar(toolbarUserProfile);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();

@@ -2,6 +2,7 @@ package com.example.seniorseminarproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import java.util.List;
 
 public class AdminEditEvent extends AppCompatActivity {
+
+    private Toolbar toolbarAdminEditEvent;
 
     private EditText editEventName;
     private EditText editEventDate;
@@ -33,6 +36,10 @@ public class AdminEditEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_edit_event);
+
+        toolbarAdminEditEvent = (Toolbar)this.findViewById(R.id.toolbarAdminEditEvent);
+        toolbarAdminEditEvent.setTitle("Edit Event");
+        setSupportActionBar(toolbarAdminEditEvent);
 
         key = getIntent().getStringExtra("key");
         eventName = getIntent().getStringExtra("eventName");

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,8 @@ import java.io.IOException;
 
 public class UserEditProfile extends AppCompatActivity {
 
+    private Toolbar toolbarUserEditProfile;
+
     public ImageView userProfileImage;
     public EditText userEditUsername;
     public EditText userEditFirstName;
@@ -54,6 +57,10 @@ public class UserEditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit_profile);
+
+        toolbarUserEditProfile = (Toolbar)this.findViewById(R.id.toolbarUserEditProfile);
+        toolbarUserEditProfile.setTitle("Edit Profile");
+        setSupportActionBar(toolbarUserEditProfile);
 
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
 

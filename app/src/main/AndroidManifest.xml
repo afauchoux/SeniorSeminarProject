@@ -17,7 +17,6 @@
         <activity android:name=".UserEvents" />
         <activity android:name=".AdminCreateEvent" />
         <activity android:name=".UserEditProfile" />
-        <activity android:name=".UserScanQRCode" />
         <activity android:name=".UserRewards" />
         <activity android:name=".UserProfile" />
         <activity android:name=".UserMainActivity" />

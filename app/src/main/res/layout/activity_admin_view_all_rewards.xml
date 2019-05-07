@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".AdminViewAllRewards">
 
+    <include
+        android:id="@+id/toolbarAdminRewards"
+        layout="@layout/toolbar" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerviewAllRewards"
         android:layout_width="match_parent"
