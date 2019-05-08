@@ -100,6 +100,9 @@ public class UserBuyReward extends AppCompatActivity {
 
     public void rewardFinalBuyButtonPressed(View v){
         buyReward(cost, payment);
+        Intent i = new Intent(this, UserClaimReward.class);
+        i.putExtra("rewardName", mRewardBuyName.getText().toString());
+        this.startActivity(i);
     }
 
     private void buyReward(String cost, String payment){

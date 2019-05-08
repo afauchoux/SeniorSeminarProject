@@ -10,10 +10,12 @@ import android.widget.TextView;
 public class UserClaimReward extends AppCompatActivity {
 
     private Toolbar toolbarUserClaimReward;
-    private TextView userClaimRewardThankYouTV;
-    private ImageView claimRewardQRCodeImage;
+    private TextView userClaimRewardThankYou;
+    private ImageView userClaimRewardQRCodeImage;
     public Button userClaimRewardQRCodeButton;
     public Button userClaimRewardEmailButton;
+
+    private String rewardName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +24,13 @@ public class UserClaimReward extends AppCompatActivity {
 
         toolbarUserClaimReward = (Toolbar)this.findViewById(R.id.toolbarUserClaimReward);
         toolbarUserClaimReward.setTitle("Claim Reward");
+        setSupportActionBar(toolbarUserClaimReward);
+
+        this.userClaimRewardThankYou = (TextView)this.findViewById(R.id.userClaimRewardThankYouTV);
+        this.userClaimRewardQRCodeImage = (ImageView)this.findViewById(R.id.userClaimRewardQRCodeImage);
+        this.userClaimRewardEmailButton = (Button)this.findViewById(R.id.userClaimRewardEmailButton);
+        this.userClaimRewardQRCodeButton = (Button)this.findViewById(R.id.userClaimRewardQRCodeButton);
+
+        rewardName = getIntent().getStringExtra("rewardName");
     }
 }

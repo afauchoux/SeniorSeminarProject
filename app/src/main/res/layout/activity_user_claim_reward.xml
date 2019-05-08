@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/userClaimRewardQRCodeButton">
 
             <ImageView
-                android:id="@+id/claimRewardQRCodeImage"
+                android:id="@+id/userClaimRewardQRCodeImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
