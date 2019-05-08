@@ -17,6 +17,7 @@ public class AdminMainActivity extends AppCompatActivity {
     public Button editEventButton;
     public Button editRewardButton;
     public Button editUserButton;
+    public Button scanRewardQRCodeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class AdminMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_main);
 
         toolbarAdminMainActivity = (Toolbar)this.findViewById(R.id.toolbarMainActivity);
-        toolbarAdminMainActivity.setTitle("Incentivate Admin");
+        toolbarAdminMainActivity.setTitle("INCENTIV1000");
         setSupportActionBar(toolbarAdminMainActivity);
 
         this.createEventButton = (Button)this.findViewById(R.id.createEventButton);
@@ -33,6 +34,7 @@ public class AdminMainActivity extends AppCompatActivity {
         this.editEventButton = (Button)this.findViewById(R.id.editEventButton);
         this.editRewardButton = (Button)this.findViewById(R.id.editRewardButton);
         this.editUserButton = (Button)this.findViewById(R.id.editUserButton);
+        this.scanRewardQRCodeButton = (Button)this.findViewById(R.id.scanRewardQRCodeButton);
     }
 
     public void createEventButtonPressed(View v){
