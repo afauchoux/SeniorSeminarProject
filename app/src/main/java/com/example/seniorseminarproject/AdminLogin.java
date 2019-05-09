@@ -86,6 +86,7 @@ public class AdminLogin extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), AdminMainActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
+
                     Toast.makeText(getApplicationContext(), "Logged In As Admin", Toast.LENGTH_LONG).show();
                 }
                 else{

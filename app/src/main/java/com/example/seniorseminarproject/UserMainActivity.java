@@ -54,7 +54,7 @@ public class UserMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_main);
 
         toolbarUserMainActivity = (Toolbar)this.findViewById(R.id.toolbarMainActivity);
-        toolbarUserMainActivity.setTitle("INCENTIV1000");
+        toolbarUserMainActivity.setTitle("INCENTIVATE");
         setSupportActionBar(toolbarUserMainActivity);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerviewNewsfeed);
