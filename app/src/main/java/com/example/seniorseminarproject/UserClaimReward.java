@@ -22,7 +22,9 @@ public class UserClaimReward extends AppCompatActivity {
     public Button userClaimRewardQRCodeButton;
     public Button userClaimRewardEmailButton;
 
+    private String thankYou;
     private String rewardName;
+    private String ending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +35,12 @@ public class UserClaimReward extends AppCompatActivity {
         toolbarUserClaimReward.setTitle("Claim Reward");
         setSupportActionBar(toolbarUserClaimReward);
 
+        thankYou = "Thank you for purchasing ";
         rewardName = getIntent().getStringExtra("rewardName");
+        ending = ". Click the GENERATE button to generate a QR Code and claim your reward now. If you want to claim your reward later click the EMAIL button and an email will be sent to your account with the QR Code.";
 
         this.userClaimRewardThankYou = (TextView)this.findViewById(R.id.userClaimRewardThankYouTV);
-        userClaimRewardThankYou.setText("Thank you for purchasing " + rewardName + ". Click the GENERATE button to generate a QR Code and claim your reward now. If you want to claim your reward later click the EMAIL button and an email will be sent to your account with the QR Code.");
+        userClaimRewardThankYou.setText( thankYou + rewardName + ending);
         this.userClaimRewardQRCodeImage = (ImageView)this.findViewById(R.id.userClaimRewardQRCodeImage);
         this.userClaimRewardEmailButton = (Button)this.findViewById(R.id.userClaimRewardEmailButton);
         this.userClaimRewardQRCodeButton = (Button)this.findViewById(R.id.userClaimRewardQRCodeButton);

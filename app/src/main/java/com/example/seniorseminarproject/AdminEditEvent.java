@@ -68,65 +68,72 @@ public class AdminEditEvent extends AppCompatActivity {
         updateEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Event event = new Event();
-                event.setEventName(editEventName.getText().toString());
-                event.setEventDate(editEventDate.getText().toString());
-                event.setEventTime(editEventTime.getText().toString());
-                event.setEventLocation(editEventLocation.getText().toString());
-                event.setEventDescription(editEventDescription.getText().toString());
-                event.setEventPoints(editEventPoints.getText().toString());
+            Event event = new Event();
+            event.setEventName(editEventName.getText().toString());
+            event.setEventDate(editEventDate.getText().toString());
+            event.setEventTime(editEventTime.getText().toString());
+            event.setEventLocation(editEventLocation.getText().toString());
+            event.setEventDescription(editEventDescription.getText().toString());
+            event.setEventPoints(editEventPoints.getText().toString());
 
-                new AdminEventDatabaseHelper().updateEvent(key, event, new AdminEventDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataLoaded(List<Event> events, List<String> keys) {
+            new AdminEventDatabaseHelper().updateEvent(key, event, new AdminEventDatabaseHelper.DataStatus() {
+                @Override
+                public void DataLoaded(List<Event> events, List<String> keys) {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsInserted() {
+                @Override
+                public void DataIsInserted() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsUpdated() {
-                        Toast.makeText(AdminEditEvent.this, "Event Has Been Updated", Toast.LENGTH_LONG).show();
-                    }
+                @Override
+                public void DataIsUpdated() {
+                    Toast.makeText(AdminEditEvent.this, "Event Has Been Updated", Toast.LENGTH_LONG).show();
+                }
 
-                    @Override
-                    public void DataIsDeleted() {
+                @Override
+                public void DataIsDeleted() {
 
-                    }
-                });
+                }
+            });
+            returnToMain();
             }
         });
 
         deleteEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AdminEventDatabaseHelper().deleteEvent(key, new AdminEventDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataLoaded(List<Event> events, List<String> keys) {
+            new AdminEventDatabaseHelper().deleteEvent(key, new AdminEventDatabaseHelper.DataStatus() {
+                @Override
+                public void DataLoaded(List<Event> events, List<String> keys) {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsInserted() {
+                @Override
+                public void DataIsInserted() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsUpdated() {
+                @Override
+                public void DataIsUpdated() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsDeleted() {
-                        Toast.makeText(AdminEditEvent.this, "Event Was Deleted", Toast.LENGTH_LONG).show();
-                        finish();
-                        return;
-                    }
-                });
+                @Override
+                public void DataIsDeleted() {
+                    Toast.makeText(AdminEditEvent.this, "Event Was Deleted", Toast.LENGTH_LONG).show();
+                    finish();
+                    return;
+                }
+            });
+            returnToMain();
             }
         });
+    }
+
+    private void returnToMain(){
+        Intent i = new Intent(this, AdminMainActivity.class);
+        this.startActivity(i);
     }
 }

@@ -57,63 +57,70 @@ public class AdminEditUser extends AppCompatActivity {
         updateUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User();
-                user.setUsername(editUsername.getText().toString());
-                user.setFirstName(editFirstName.getText().toString());
-                user.setLastName(editLastName.getText().toString());
-                user.setPoints(editTotalPoints.getText().toString());
+            User user = new User();
+            user.setUsername(editUsername.getText().toString());
+            user.setFirstName(editFirstName.getText().toString());
+            user.setLastName(editLastName.getText().toString());
+            user.setPoints(editTotalPoints.getText().toString());
 
-                new AdminUserDatabaseHelper().updateUser(key, user, new AdminUserDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataLoaded(List<User> users, List<String> keys) {
+            new AdminUserDatabaseHelper().updateUser(key, user, new AdminUserDatabaseHelper.DataStatus() {
+                @Override
+                public void DataLoaded(List<User> users, List<String> keys) {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsInserted() {
+                @Override
+                public void DataIsInserted() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsUpdated() {
-                        Toast.makeText(AdminEditUser.this, "User Has Been Updated", Toast.LENGTH_LONG).show();
-                    }
+                @Override
+                public void DataIsUpdated() {
+                    Toast.makeText(AdminEditUser.this, "User Has Been Updated", Toast.LENGTH_LONG).show();
+                }
 
-                    @Override
-                    public void DataIsDeleted() {
+                @Override
+                public void DataIsDeleted() {
 
-                    }
-                });
+                }
+            });
+            returnToMain();
             }
         });
 
         deleteUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AdminUserDatabaseHelper().deleteUser(key, new AdminUserDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataLoaded(List<User> users, List<String> keys) {
+            new AdminUserDatabaseHelper().deleteUser(key, new AdminUserDatabaseHelper.DataStatus() {
+                @Override
+                public void DataLoaded(List<User> users, List<String> keys) {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsInserted() {
+                @Override
+                public void DataIsInserted() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsUpdated() {
+                @Override
+                public void DataIsUpdated() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsDeleted() {
-                        Toast.makeText(AdminEditUser.this, "User Was Deleted", Toast.LENGTH_LONG).show();
-                        finish();
-                        return;
-                    }
-                });
+                @Override
+                public void DataIsDeleted() {
+                    Toast.makeText(AdminEditUser.this, "User Was Deleted", Toast.LENGTH_LONG).show();
+                    finish();
+                    return;
+                }
+            });
+            returnToMain();
             }
         });
+    }
+
+    private void returnToMain(){
+        Intent i = new Intent(this, AdminMainActivity.class);
+        this.startActivity(i);
     }
 }

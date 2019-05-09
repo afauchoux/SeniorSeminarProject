@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,7 @@ public class AdminLogin extends AppCompatActivity {
     public EditText adminEmailET;
     public EditText adminPasswordET;
     public Button adminLoginButton;
+    public ProgressBar progressBarAdminLogin;
 
     public DatabaseReference mDatabase;
     public FirebaseAuth mAuth;
@@ -43,6 +45,7 @@ public class AdminLogin extends AppCompatActivity {
         this.adminEmailET = (EditText)this.findViewById(R.id.adminEmailET);
         this.adminPasswordET = (EditText)this.findViewById(R.id.adminPasswordET);
         this.adminLoginButton = (Button) this.findViewById(R.id.adminLoginButton);
+        this.progressBarAdminLogin = (ProgressBar)this.findViewById(R.id.progressBarAdminLogin);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -75,12 +78,12 @@ public class AdminLogin extends AppCompatActivity {
         }
 
 
-        //progressBarLogin.setVisibility(View.VISIBLE);
+        progressBarAdminLogin.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                //progressBarLogin.setVisibility(View.GONE);
+                progressBarAdminLogin.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     finish();
                     Intent i = new Intent(getApplicationContext(), AdminMainActivity.class);

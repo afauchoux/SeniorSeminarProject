@@ -62,6 +62,7 @@ public class AdminCreateEvent extends AppCompatActivity {
     public void saveEventButtonPressed(View v){
         addEvent();
         writeToNewsfeed();
+        returnToMain();
     }
 
     private void addEvent(){
@@ -99,5 +100,10 @@ public class AdminCreateEvent extends AppCompatActivity {
         Newsfeed newsfeed = new Newsfeed(newsfeedId, newsfeedEvent, newsfeedTime);
 
         databaseNewsfeed.child(newsfeedId).setValue(newsfeed);
+    }
+
+    private void returnToMain(){
+        Intent i = new Intent(this, AdminMainActivity.class);
+        this.startActivity(i);
     }
 }

@@ -80,9 +80,15 @@ public class AdminCreateQRCode extends AppCompatActivity {
 
     public void saveQRCodeButtonPressed(View v){
         uploadQRCodeToFirebaseStorage();
+        returnToMain();
     }
 
     private void uploadQRCodeToFirebaseStorage() {
 
+    }
+
+    private void returnToMain(){
+        Intent i = new Intent(this, AdminMainActivity.class);
+        this.startActivity(i);
     }
 }

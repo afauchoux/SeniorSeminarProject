@@ -56,6 +56,7 @@ public class AdminCreateReward extends AppCompatActivity {
     public void saveRewardButtonPressed(View v){
         addReward();
         writeToNewsfeed();
+        returnToMain();
     }
 
     private void addReward(){
@@ -89,5 +90,10 @@ public class AdminCreateReward extends AppCompatActivity {
         Newsfeed newsfeed = new Newsfeed(newsfeedId, newsfeedEvent, newsfeedTime);
 
         databaseNewsfeed.child(newsfeedId).setValue(newsfeed);
+    }
+
+    private void returnToMain(){
+        Intent i = new Intent(this, AdminMainActivity.class);
+        this.startActivity(i);
     }
 }

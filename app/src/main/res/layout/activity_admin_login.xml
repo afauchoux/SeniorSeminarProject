@@ -71,6 +71,19 @@
             app:layout_constraintStart_toEndOf="@+id/adminPasswordTV"
             app:layout_constraintTop_toBottomOf="@+id/adminEmailET" />
 
+        <ProgressBar
+            android:id="@+id/progressBarAdminLogin"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/adminLoginButton"
+            app:layout_constraintEnd_toEndOf="@+id/adminPasswordET"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/adminLoginButton"
             android:layout_width="match_parent"

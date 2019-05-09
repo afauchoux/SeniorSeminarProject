@@ -52,62 +52,69 @@ public class AdminEditReward extends AppCompatActivity {
         updateRewardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Reward reward = new Reward();
-                reward.setRewardName(editRewardName.getText().toString());
-                reward.setRewardCost(editRewardCost.getText().toString());
-                reward.setRewardDescription(editRewardDescription.getText().toString());
+            Reward reward = new Reward();
+            reward.setRewardName(editRewardName.getText().toString());
+            reward.setRewardCost(editRewardCost.getText().toString());
+            reward.setRewardDescription(editRewardDescription.getText().toString());
 
-                new AdminRewardDatabaseHelper().updateReward(key, reward, new AdminRewardDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataLoaded(List<Reward> rewards, List<String> keys) {
+            new AdminRewardDatabaseHelper().updateReward(key, reward, new AdminRewardDatabaseHelper.DataStatus() {
+                @Override
+                public void DataLoaded(List<Reward> rewards, List<String> keys) {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsInserted() {
+                @Override
+                public void DataIsInserted() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsUpdated() {
-                        Toast.makeText(AdminEditReward.this, "Reward Has Been Updated", Toast.LENGTH_LONG).show();
-                    }
+                @Override
+                public void DataIsUpdated() {
+                    Toast.makeText(AdminEditReward.this, "Reward Has Been Updated", Toast.LENGTH_LONG).show();
+                }
 
-                    @Override
-                    public void DataIsDeleted() {
+                @Override
+                public void DataIsDeleted() {
 
-                    }
-                });
+                }
+            });
+            returnToMain();
             }
         });
 
         deleteRewardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AdminRewardDatabaseHelper().deleteReward(key, new AdminRewardDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataLoaded(List<Reward> rewards, List<String> keys) {
+            new AdminRewardDatabaseHelper().deleteReward(key, new AdminRewardDatabaseHelper.DataStatus() {
+                @Override
+                public void DataLoaded(List<Reward> rewards, List<String> keys) {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsInserted() {
+                @Override
+                public void DataIsInserted() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsUpdated() {
+                @Override
+                public void DataIsUpdated() {
 
-                    }
+                }
 
-                    @Override
-                    public void DataIsDeleted() {
-                        Toast.makeText(AdminEditReward.this, "Reward Was Deleted", Toast.LENGTH_LONG).show();
-                        finish();
-                        return;
-                    }
-                });
+                @Override
+                public void DataIsDeleted() {
+                    Toast.makeText(AdminEditReward.this, "Reward Was Deleted", Toast.LENGTH_LONG).show();
+                    finish();
+                    return;
+                }
+            });
+            returnToMain();
             }
         });
+    }
+
+    private void returnToMain(){
+        Intent i = new Intent(this, AdminMainActivity.class);
+        this.startActivity(i);
     }
 }
